@@ -1,0 +1,23 @@
+<div class="container">
+
+  <form (ngSubmit)="submitFormHandle()">
+
+    <mat-form-field appearance="fill" [formGroup]="form">
+
+      <mat-label>Name</mat-label>
+      <input type="text" matInput formControlName="name" [errorStateMatcher]="matcher"
+             placeholder="Ex. Textil">
+
+      <mat-hint>Errors appear instantly!</mat-hint>
+
+      <mat-error *ngIf="hasFieldError('name', 'required')">
+        Name is <strong>required</strong>
+      </mat-error>
+
+    </mat-form-field>
+
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+
+  </form>
+
+</div>

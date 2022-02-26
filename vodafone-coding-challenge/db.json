@@ -1,0 +1,9 @@
+{
+  "industries": [
+    { "id": 1, "name": "Textil" },
+    { "id": 2, "name": "Mobile" }
+  ],
+  "devices": [
+    { "id": 1, "name": "device 1", "warehouseAdditionTime": null, "numberOfDevices": 10, "fee": 0.1, "linkedIndrustry": 1 }
+  ]
+}

@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatButtonModule} from '@angular/material/button';
+import { OverlayService } from './overlay/services/overlay.service';
+import { FullscreenOverlayContainer, OverlayContainer, OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [],
@@ -18,7 +20,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatPaginatorModule,
     MatChipsModule,
-    MatButtonModule
+    MatButtonModule,
+    OverlayModule
   ],
   exports: [
     BrowserModule,
@@ -28,7 +31,13 @@ import {MatButtonModule} from '@angular/material/button';
     MatInputModule,
     MatPaginatorModule,
     MatChipsModule,
-    MatButtonModule
+    MatButtonModule,
+    OverlayModule
+  ],
+  providers: [
+    OverlayService,
+    {provide: OverlayContainer, useClass: FullscreenOverlayContainer}
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA ]
 })

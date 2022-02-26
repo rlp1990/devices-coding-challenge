@@ -1,16 +1,17 @@
-import { AfterViewInit, Component, ViewChild, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { Industry } from './models/industry';
-import {MatSort, Sort} from '@angular/material/sort';
+import { Component, ViewChild } from '@angular/core';
+import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { FormBase } from '../forms/models/form.base';
+import { DialogRef } from '../overlay/overlay-ref';
+import { IndustryService } from './services/industry.service';
 
 /**
  * Custom default data for Industry table
  */
-const ELEMENT_DATA: Industry[] = [
-  { id: '1', name: 'Textil' },
-  { id: '2', name: 'Mobile' }
+const ELEMENT_DATA: FormBase[] = [
+  { id: 1, name: 'Textil' },
+  { id: 2, name: 'Mobile' }
 ];
 
 @Component({
@@ -19,6 +20,8 @@ const ELEMENT_DATA: Industry[] = [
   styleUrls: ['./industry.component.scss']
 })
 export class IndustryComponent {
+
+  private dialogRef: DialogRef;
 
   // Defined columns of the Industry table
   displayedColumns: string[] = ['name', 'action'];
@@ -32,6 +35,8 @@ export class IndustryComponent {
   // Access to table paginator element
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  constructor(private industryService: IndustryService) { }
+
   // Actions required after the components have fully loaded in the view
   ngAfterViewInit() {
 
@@ -41,8 +46,6 @@ export class IndustryComponent {
     // Link sorter to dataSource table
     this.dataSource.sort = this.sort;
   }
-
-  constructor() { }
 
   /**
    * Method to fetch input data from filter and filter data from table
@@ -55,6 +58,10 @@ export class IndustryComponent {
 
     // Filter rows according to filter value
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  createIndustry() {
+    this.dialogRef = this.industryService.openCreateIndustry();
   }
 
 }
