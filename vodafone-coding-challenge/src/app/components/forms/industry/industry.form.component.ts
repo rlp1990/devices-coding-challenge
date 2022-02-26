@@ -2,6 +2,7 @@ import { Component, Injector } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DIALOG_DATA } from '../../overlay/tokens/dialog-tokens';
 import { FormBaseComponent } from '../form.base.component';
+import { IndustryFormService } from './services/industry.form.service';
 
 @Component({
   selector: 'app-industry-form',
@@ -14,7 +15,7 @@ export class IndustryFormComponent extends FormBaseComponent {
     name: new FormControl('', [Validators.required])
   });
 
-  constructor() {
+  constructor(private industryFormService: IndustryFormService) {
     super();
   }
 
